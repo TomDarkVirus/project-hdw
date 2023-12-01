@@ -1,0 +1,30 @@
+#----- Switches -----#
+
+vlan 10 name Beheer
+vlan 11 name Personeel
+vlan 12 name Onderwijs
+vlan 13 name "Data Centrum"
+int GigabitEthernet 1
+switchport mode trunk
+switchport trunk allowed vlan add 10,11,12,13
+exit
+int GigabitEthernet 2
+switchport mode trunk
+switchport trunk allowed vlan add 10,11,12,13
+
+#----- Routers -----#
+
+interface vlan 100 
+name vlan HW-N
+
+interface Gigabitethernet 0/0/0.100
+encapsulation dot1Q 100
+ip address 192.168.0.35 255.255.255.240
+
+
+interface vlan 102 
+name vlan HW-N
+
+interface Gigabitethernet 0/0/0.100
+encapsulation dot1Q 102
+ip address 192.168.0.66 255.255.255.240
