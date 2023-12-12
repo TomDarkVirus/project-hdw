@@ -1,0 +1,78 @@
+---
+- hosts: REPLACE WITH ACTUAL HOST
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Configure basic router settings (DEZE NOG AANPASSEN)
+      ios_config:
+        lines:
+          - hostname HW-RT
+          - enable secret your_enable_password
+          - username your_username password your_password
+
+    - name: Configure interface GigabitEthernet0/0/0.101
+      ios_command:
+        commands:
+          - interface GigabitEthernet0/0/0.101
+          - encapsulation dot1Q 101
+          - ip address 192.168.0.130 255.255.255.242
+
+    - name: Configure interface GigabitEthernet0/0/1.100
+      ios_command:
+        commands:
+          - interface GigabitEthernet0/0/1.100
+          - encapsulation dot1Q 100
+          - ip address 192.168.0.34 255.255.255.242
+
+    - name: Configure VLANs
+      ios_command:
+        commands:
+          - vlan 10
+          - name Beheer
+          - vlan 11
+          - name Personeel
+          - vlan 12
+          - name Onderwijs
+          - vlan 13
+          - name Data_Centrum
+          - vlan 14
+          - name ISP
+
+    - name: Configure trunk interfaces
+      ios_command:
+        commands:
+          - interface GigabitEthernet0/1/0
+          - switchport mode trunk
+          - switchport trunk allowed vlan add 10,11,12,13
+          - no ip address
+          - interface GigabitEthernet0/1/1
+          - switchport mode trunk
+          - switchport trunk allowed vlan add 10,11,12,13
+          - no ip address
+
+    - name: Configure access interfaces
+      ios_command:
+        commands:
+          - interface GigabitEthernet0/1/2
+          - switchport mode access
+          - switchport access vlan 14
+          - no ip address
+          - interface GigabitEthernet0/1/3
+          - switchport mode access
+          - switchport access vlan 14
+          - no ip address
+
+    - name: Configure VLAN interfaces
+      ios_command:
+        commands:
+          - interface Vlan10
+          - ip address 10.0.0.1 255.255.255.0
+          - interface Vlan11
+          - ip address 10.1.0.1 255.255.255.0
+          - interface Vlan12
+          - ip address 10.1.2.1 255.255.255.0
+          - interface Vlan13
+          - ip address 10.0.128.1 255.255.252.0
+          - interface Vlan14
+          - ip address 20.1.0.1 255.255.0.0
