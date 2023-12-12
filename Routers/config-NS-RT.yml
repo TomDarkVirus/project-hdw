@@ -1,0 +1,26 @@
+---
+- hosts: REPLACE WITH ACTUAL HOST
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Configure basic router settings (DEZE NOG AANPASSEN)
+      ios_config:
+        lines:
+          - hostname NS-RT
+          - enable secret your_enable_password
+          - username your_username password your_password
+
+    - name: Configure interface GigabitEthernet0/0/0.102
+      ios_config:
+        lines:
+          - interface GigabitEthernet0/0/0.102
+          - encapsulation dot1Q 102
+          - ip address 192.168.0.66 255.255.255.242
+
+    - name: Configure interface GigabitEthernet0/0/1.100
+      ios_config:
+        lines:
+          - interface GigabitEthernet0/0/1.100
+          - encapsulation dot1q 100
+          - ip address 192.168.0.35 255.255.255.242
