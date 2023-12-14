@@ -1,20 +1,6 @@
-#----- Switches -----#
+#----- Router 1 -----#
 
-vlan 10 name Beheer
-vlan 11 name Personeel
-vlan 12 name Onderwijs
-vlan 13 name "Data Centrum"
-int GigabitEthernet 1
-switchport mode trunk
-switchport trunk allowed vlan add 10,11,12,13
-exit
-int GigabitEthernet 2
-switchport mode trunk
-switchport trunk allowed vlan add 10,11,12,13
-
-#----- Routers -----#
-
-HW-RT
+hostname HW-RT
 
 interface GigabitEthernet0/0/0.101
 encapsulation dot1Q 101
