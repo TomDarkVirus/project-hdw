@@ -10,17 +10,17 @@ vlan 13 name DataCentrum
 int GigabitEthernet 1
 switchport mode trunk
 switchport trunk allowed vlan add 10,11,12,13
-swtichport trunk allowed vlan remove 1-9,14-4094
+switchport trunk allowed vlan remove 1-9,14-4094
 
 int GigabitEthernet 2
 switchport mode trunk
 switchport trunk allowed vlan add 10,11,12,13
-swtichport trunk allowed vlan remove 1-9,14-4094
+switchport trunk allowed vlan remove 1-9,14-4094
 
 int GigabitEthernet 3
 switchport mode trunk
 switchport trunk allowed vlan add 10,11,12
-swtichport trunk allowed vlan remove 1-9,13-4094
+switchport trunk allowed vlan remove 1-9,13-4094
 
 int GigabitEthernet 4
 switchport mode access

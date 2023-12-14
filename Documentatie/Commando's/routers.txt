@@ -1,14 +1,6 @@
-#----- Router 1 -----#
+#---------- Router 1 ----------#
 
 hostname HW-RT
-
-interface GigabitEthernet0/0/0.101
-encapsulation dot1Q 101
-ip address 192.168.0.130 255.255.255.242
-
-interface GigabitEthernet0/0/1.100
-encapsulation dot1Q 100
-ip address 192.168.0.34 255.255.255.242
 
 vlan 10
 name Beheer
@@ -17,29 +9,9 @@ name Personeel
 vlan 12
 name Onderwijs
 vlan 13
-name Data_Centrum
+name DataCentrum
 vlan 14
 name ISP
-
-interface GigabitEthernet0/1/0
-switchport mode trunk
-switchport trunk allowed vlan add 10,11,12,13
-no ip address
-
-interface GigabitEthernet0/1/1
-switchport mode trunk
-switchport trunk allowed vlan add 10,11,12,13
-no ip address
-
-interface GigabitEthernet0/1/2
-switchport mode access
-switchport access vlan 14
-no ip address
-
-interface GigabitEthernet0/1/3
-switchport mode access
-switchport access vlan 14
-no ip address
 
 interface Vlan10
 ip address 10.0.0.1 255.255.255.0
@@ -56,27 +28,135 @@ ip address 10.0.128.1 255.255.252.0
 interface Vlan14
 ip address 20.1.0.1 255.255.0.0
 
+interface GigabitEthernet0/0/0.101
+encapsulation dot1Q 101
+ip address 192.168.0.130 255.255.255.240
 
--------------------------------------------
+interface GigabitEthernet0/0/1.100
+encapsulation dot1Q 100
+ip address 192.168.0.34 255.255.255.240
 
-NS-RT
+interface GigabitEthernet0/1/0
+switchport mode trunk
+switchport trunk allowed vlan add 10,11,12,13
+switchport trunk allowed vlan remove 1-9,14-4094
+
+interface GigabitEthernet0/1/1
+switchport mode trunk
+switchport trunk allowed vlan add 10,11,12,13
+switchport trunk allowed vlan remove 1-9,14-4094
+
+interface GigabitEthernet0/1/2
+switchport mode access
+switchport access vlan 14
+
+interface GigabitEthernet0/1/3
+switchport mode access
+switchport access vlan 14
+
+ip route 0.0.0.0 0.0.0.0 10.1.3.2
+ip route 192.168.0.64 255.255.255.240 192.168.0.35
+ip route 192.168.0.64 255.255.255.240 192.168.0.131
+
+router ospf 1
+router-id 1.1.1.1
+network 192.168.0.32 0.0.0.15 area 0
+network 192.168.0.128 0.0.0.15 area 0
+
+interface GigabitEthernet0/0/0.101
+ip ospf priority 200
+
+interface GigabitEthernet0/0/0.100
+ip ospf priority 200
+
+spanning-tree mode mst
+spanning-tree mst configuration
+revision 1
+name Universiteit
+instance 1 vlan 10,11,12,13
+exit
+spanning-tree mst 1 priority 0
+
+
+
+
+
+#---------- Router 2 ----------#
+
+hostname NS-RT
+
+vlan 20
+name Personeel
+vlan 21
+name Onderwijs
+
+interface vlan20
+ip address 10.2.0.1 255.255.255.0
+
+interface Vlan21
+ip address 10.2.1.1 255.255.255.0
 
 interface GigabitEthernet0/0/0.102
 encapsulation dot1Q 102
-ip address 192.168.0.66 255.255.255.242
+ip address 192.168.0.66 255.255.255.240
 
 interface GigabitEthernet0/0/1.100
 encapsulation dot1q 100
-ip address 192.168.0.35 255.255.255.242
+ip address 192.168.0.35 255.255.255.240
 
--------------------------------------------
+ip route 0.0.0.0 0.0.0.0 192.168.0.34
+ip route 192.168.0.128 255.255.255.240 192.168.0.131
+ip route 192.168.0.128 255.255.255.240 192.168.0.67
 
-PT-RT
+router ospf 1
+router-id 2.2.2.2
+network 192.168.0.32 0.0.0.15 area 0
+network 192.168.0.64 0.0.0.15 area 0
+
+interface GigabitEthernet0/0/0.102
+ip ospf priority 0
+
+interface GigabitEthernet0/0/1.100
+ip ospf priority 0
+
+
+
+
+
+#---------- Router 3 ----------#
+
+hostname PT-RT
+
+vlan 30
+name Personeel
+vlan 31
+name Onderwijs
+
+interface Vlan30
+ip address 10.3.0.1 255.255.255.0
+
+interface Vlan31
+ip address 10.3.1.1 255.255.255.0
 
 interface GigabitEthernet0/0/0.101
 encapsulation dot1q 101
-ip address 192.168.0.131 255.255.255.242
+ip address 192.168.0.131 255.255.255.240
 
 interface GigabitEthernet0/0/1.102
 encapsulation dot1q 102
-ip address 192.168.0.67 255.255.255.242
+ip address 192.168.0.67 255.255.255.240
+
+ip route 0.0.0.0 0.0.0.0 192.168.0.130
+ip route 192.168.0.32 255.255.255.240 192.168.0.130
+ip route 192.168.0.32 255.255.255.240 192.168.0.66
+
+router ospf 1
+router-id 3.3.3.3
+network 192.168.0.64 0.0.0.15 area 0
+network 192.168.0.128 0.0.0.15 area 0
+
+interface GigabitEthernet0/0/0.101
+ip ospf priority 100
+
+interface GigabitEthernet0/0/1.102
+ip ospf priority 100
