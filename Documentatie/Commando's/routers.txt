@@ -1,5 +1,8 @@
 #---------- Router 1 ----------#
 
+enable secret level 15 Wachtwoord12!
+username HW-RT secret Wachtwoord12!
+
 hostname HW-RT
 
 vlan 10
@@ -83,6 +86,9 @@ spanning-tree mst 1 priority 0
 
 #---------- Router 2 ----------#
 
+enable secret level 15 Wachtwoord12!
+username NS-RT secret Wachtwoord12!
+
 hostname NS-RT
 
 vlan 20
@@ -124,6 +130,9 @@ ip ospf priority 0
 
 
 #---------- Router 3 ----------#
+
+enable secret level 15 Wachtwoord12!
+username PT-RT secret Wachtwoord12!
 
 hostname PT-RT
 
