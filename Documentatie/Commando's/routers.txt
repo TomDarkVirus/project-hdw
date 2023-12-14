@@ -4,6 +4,15 @@ enable secret level 15 Wachtwoord12!
 username HW-RT secret Wachtwoord12!
 
 hostname HW-RT
+ip domain name N1HW1.nl
+
+ip ssh version 2
+crypto key generate rsa
+2048
+line vty 0 4
+password Wachtwoord12!
+login local
+transport input ssh
 
 vlan 10
 name Beheer
@@ -90,6 +99,15 @@ enable secret level 15 Wachtwoord12!
 username NS-RT secret Wachtwoord12!
 
 hostname NS-RT
+ip domain name N1HW1.nl
+
+ip ssh version 2
+crypto key generate rsa
+2048
+line vty 0 4
+password Wachtwoord12!
+login local
+transport input ssh
 
 vlan 20
 name Personeel
@@ -135,6 +153,15 @@ enable secret level 15 Wachtwoord12!
 username PT-RT secret Wachtwoord12!
 
 hostname PT-RT
+ip domain name N1HW1.nl
+
+ip ssh version 2
+crypto key generate rsa
+2048
+line vty 0 4
+password Wachtwoord12!
+login local
+transport input ssh
 
 vlan 30
 name Personeel
