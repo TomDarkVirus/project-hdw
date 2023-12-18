@@ -17,9 +17,9 @@ transport input ssh
 vlan 10
 name Beheer
 vlan 11
-name Personeel
+name Medewerkers
 vlan 12
-name Onderwijs
+name Studenten
 vlan 13
 name DataCentrum
 vlan 14
@@ -110,9 +110,9 @@ login local
 transport input ssh
 
 vlan 20
-name Personeel
+name Medewerkers
 vlan 21
-name Onderwijs
+name Studenten
 
 interface vlan20
 ip address 10.2.0.1 255.255.255.0
@@ -164,9 +164,9 @@ login local
 transport input ssh
 
 vlan 30
-name Personeel
+name Medewerkers
 vlan 31
-name Onderwijs
+name Studenten
 
 interface Vlan30
 ip address 10.3.0.1 255.255.255.0

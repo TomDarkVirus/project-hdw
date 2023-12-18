@@ -2,9 +2,11 @@
 
 hostname HW-SW1
 
+ip ssh server
+
 vlan 10 name Beheer
-vlan 11 name Personeel
-vlan 12 name Onderwijs
+vlan 11 name Medewerkers
+vlan 12 name Studenten
 vlan 13 name DataCentrum
 
 int GigabitEthernet 1
@@ -66,9 +68,11 @@ spanning-tree mst 1 priority 4096
 
 hostname HW-SW2
 
+ip ssh server
+
 vlan 10 name Beheer
-vlan 11 name Personeel
-vlan 12 name Onderwijs
+vlan 11 name Medewerkers
+vlan 12 name Studenten
 vlan 13 name DataCentrum
 
 int GigabitEthernet 1
