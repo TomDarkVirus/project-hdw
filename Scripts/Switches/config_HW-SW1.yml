@@ -25,4 +25,4 @@
           - name: DataCentrum
             vlan_id: 13
             state: active
-      state: replaced
+        state: replaced
