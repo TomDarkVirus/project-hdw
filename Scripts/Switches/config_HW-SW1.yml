@@ -1,29 +1,28 @@
 ---
-- name: Configure VLANs and Trunk Ports on Cisco Switch
-  hosts: cisco_switch
+- name: Configure Switch 1, HW-SW1
+  hosts: switch1
   gather_facts: no
-  tasks:
-    - name: Configure VLANs
-      ios_config:
-        lines:
-          - vlan 10
-          - name Beheer
-          - vlan 11
-          - name Personeel
-          - vlan 12
-          - name Onderwijs
-          - vlan 13
-          - name "Data Centrum"
-      become: yes
 
-    - name: Configure Trunk Ports
-      ios_config:
-        lines:
-          - interface GigabitEthernet1
-          - switchport mode trunk
-          - switchport trunk allowed vlan add 10,11,12,13
-          - exit
-          - interface GigabitEthernet2
-          - switchport mode trunk
-          - switchport trunk allowed vlan add 10,11,12,13
-      become: yes
+  tasks:
+    - name: Configure hostname
+      cisco.ios.ios_hostname:
+        config:
+          hostname: HW-SW1
+        state: replaced
+
+    - name: Configure VLANs
+      cisco.ios.ios_vlans:
+        config:
+          - name: Beheer
+            vlan_id: 10
+            state: active
+          - name: Medewerkers
+            vlan_id: 11
+            state: active
+          - name: Studenten
+            vlan_id: 12
+            state: active
+          - name: DataCentrum
+            vlan_id: 13
+            state: active
+      state: replaced

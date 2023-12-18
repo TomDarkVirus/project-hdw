@@ -1,0 +1,28 @@
+---
+- name: Configure Switch 2, HW-SW2
+  hosts: switch2
+  gather_facts: no
+
+  tasks:
+    - name: Configure hostname
+      cisco.ios.ios_hostname:
+        config:
+          hostname: HW-SW2
+        state: replaced
+
+    - name: Configure VLANs
+      cisco.ios.ios_vlans:
+        config:
+          - name: Beheer
+            vlan_id: 10
+            state: active
+          - name: Medewerkers
+            vlan_id: 11
+            state: active
+          - name: Studenten
+            vlan_id: 12
+            state: active
+          - name: DataCentrum
+            vlan_id: 13
+            state: active
+      state: replaced
