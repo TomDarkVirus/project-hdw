@@ -2,3 +2,96 @@
 - name: Configure Router, HW-RT
   hosts: router1
   gather_facts: no
+
+  tasks:
+    - name: Configure hostname
+      cisco.ios.ios_hostname:
+        config:
+          hostname: HW-RT
+        state: merged
+
+    - name: Configure VLANs
+      cisco.ios.ios_vlans:
+        config:
+          - name: Beheer
+            vlan_id: 10
+            state: active
+          - name: Werknemers
+            vlan_id: 11
+            state: active
+          - name: Studenten
+            vlan_id: 12
+            state: active
+          - name: DataCentrum
+            vlan_id: 13
+            state: active
+          - name: ISP
+            vlan_id: 14
+            state: active
+        state: merged
+
+    - name: Configure VLAN interfaces
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: Vlan10
+            ipv4:
+              - address: 10.0.0.1/24
+          - name: Vlan11
+            ipv4:
+              - address: 10.1.0.1/24
+          - name: Vlan12
+            ipv4:
+              - address: 10.1.2.1/24
+          - name: Vlan13
+            ipv4:
+              - address: 10.0.128.1/24
+          - name: Vlan14
+            ipv4:
+              - address: 10.3.1.1/24
+
+    - name: Configure L3 interfaces
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: GigabitEthernet0/0/0.101
+            ipv4:
+              - address: 192.168.0.130/28
+          - name: GigabitEthernet0/0/1.100
+            ipv4:
+              - address: 192.168.0.34/28
+
+    - name: Configure L2 interfaces
+      cisco.ios.ios_l2_interfaces:
+        config:
+          - name: GigabitEthernet0/1/0
+            mode: trunk
+            trunk:
+              allowed_vlans: 10-13
+          - name: GigabitEthernet0/1/1
+            mode: trunk
+            trunk:
+              allowed_vlans: 10-13
+          - name: GigabitEthernet0/1/2
+            mode: access
+            access:
+              vlan: 14
+          - name: GigabitEthernet0/1/3
+            mode: access
+            access:
+              vlan: 14
+
+    - name: Configure Multiple Spanning-Tree Protocol (MSTP)
+      cisco.ios.ios_config:
+        lines:
+          - spanning-tree mode mst
+          - spanning-tree mst configuration
+          - revision 1
+          - name Universiteit Harderwijk
+          - instance 1 vlan 10,11,12,13
+          - exit
+          - spanning-tree mst 1 priority 0
+          - end
+
+    - name: Save all configurations
+      cisco.ios.ios_command:
+        commands:
+          - write memory
