@@ -2,21 +2,3 @@
 - name: Configure Router, PT-RT
   hosts: router3
   gather_facts: no
-
-  tasks:
-  - name: Configure hostname
-    cisco.ios.ios_hostname:
-      config:
-        hostname: PT-RT
-      state: merged
-
-  - name: Configure VLANs
-    cisco.ios.ios_vlans:
-      config:
-        - name: Werknemers
-          vlan_id: 30
-          state: active
-        - name: Studenten
-          vlan_id: 31
-          state: active
-      state: merged
