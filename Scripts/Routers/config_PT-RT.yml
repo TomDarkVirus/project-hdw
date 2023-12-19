@@ -1,26 +1,4 @@
 ---
-- hosts: REPLACE WITH ACTUAL HOST
+- name: Configure Router, PT-RT
+  hosts: router3
   gather_facts: no
-  become: yes
-
-  tasks:
-    - name: Configure basic router settings (DEZE NOG AANPASSEN)
-      ios_config:
-        lines:
-          - hostname PT-RT
-          - enable secret your_enable_password
-          - username your_username password your_password
- 
-    - name: Configure interface GigabitEthernet0/0/0.101
-      ios_config:
-        lines:
-          - interface GigabitEthernet0/0/0.101
-          - encapsulation dot1Q 101
-          - ip address 192.168.0.131 255.255.255.242
-
-    - name: Configure interface GigabitEthernet0/0/1.102
-      ios_config:
-        lines:
-          - interface GigabitEthernet0/0/1.102
-          - encapsulation dot1q 102
-          - ip address 192.168.0.67 255.255.255.242
