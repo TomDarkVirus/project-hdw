@@ -16,7 +16,7 @@
           - name: Beheer
             vlan_id: 10
             state: active
-          - name: Werknemers
+          - name: Medewerkers
             vlan_id: 11
             state: active
           - name: Studenten

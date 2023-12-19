@@ -13,7 +13,7 @@
     - name: Configure VLANs
       cisco.ios.ios_vlans:
         config:
-          - name: Werknemers
+          - name: Medewerkers
             vlan_id: 20
             state: active
           - name: Studenten

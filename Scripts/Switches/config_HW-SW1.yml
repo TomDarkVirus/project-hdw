@@ -85,6 +85,6 @@
           - end
 
     - name: Save all configurations
-      cisco.ios.ios_config:
-        config:
+      cisco.ios.ios_command:
+        commands:
           - write memory
