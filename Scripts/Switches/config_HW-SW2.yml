@@ -71,3 +71,20 @@
             access:
               vlan: 13
         state: merged
+
+    - name: Configure spanning-tree
+      cisco.ios.ios_config:
+        lines:
+          - spanning-tree mode mst
+          - spanning-tree mst configuration
+          - revision 1
+          - name Universiteit Harderwijk
+          - instance 1 vlan 10,11,12,13
+          - exit
+          - spanning-tree mst 1 priority 8192
+          - end
+
+    - name: Save all configurations
+      cisco.ios.ios_command:
+        commands:
+          - write memory

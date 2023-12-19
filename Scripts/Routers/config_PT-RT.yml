@@ -7,7 +7,7 @@
   - name: Configure hostname
     cisco.ios.ios_hostname:
       config:
-        hostname: NS-RT
+        hostname: PT-RT
       state: merged
 
   - name: Configure VLANs
