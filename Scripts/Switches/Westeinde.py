@@ -21,6 +21,12 @@ domain_name_config = [
     'ip domain name IJsselstreek.edu'
 ]
 
+# Define commands needed for SNTP configuration
+sntp_config = [
+    'sntp server 10.10.0.7'
+    'clock timezone CET 1'
+]
+
 # Define commands needed for VLAN configuration
 vlan_config = [
     'vlan 20 name Systeembeheer',
@@ -53,6 +59,9 @@ result = connection.send_config_set(hostname_config)
 print(result)
 
 result = connection.send_config_set(domain_name_config)
+print(result)
+
+result = connection.send_config_set(sntp_config)
 print(result)
 
 result = connection.send_config_set(vlan_config)
