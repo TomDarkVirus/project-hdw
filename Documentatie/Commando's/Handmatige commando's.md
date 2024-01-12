@@ -1,5 +1,6 @@
 # Deze commando's moeten handmatig worden uigevoerd zodat er een SSH verbinding mogelijk is voor automatisering.
 # Bij de regels waar ##### staat dient de gebruiker een eigen wachtwoord in te voeren.
+# De gebruiker en wachtwoord op de switch worden handmatig ingevoerd na een reset van het apparaat.
 
 # Switches
 
