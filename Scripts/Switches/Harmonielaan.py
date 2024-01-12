@@ -27,6 +27,11 @@ sntp_config = [
     'clock timezone CET 1'
 ]
 
+# Define command needed for DNS configuration
+dns_config = [
+    'ip name-server 10.10.0.7'
+]
+
 # Define commands needed for VLAN configuration
 vlan_config = [
     'vlan 20 name Systeembeheer',
@@ -62,6 +67,9 @@ result = connection.send_config_set(domain_name_config)
 print(result)
 
 result = connection.send_config_set(sntp_config)
+print(result)
+
+result = connection.send_config_set(dns_config)
 print(result)
 
 result = connection.send_config_set(vlan_config)
