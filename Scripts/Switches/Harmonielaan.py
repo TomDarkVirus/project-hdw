@@ -44,7 +44,7 @@ mstp_config = [
     'spanning-tree mst configuration',
     'revision 1',
     'name Harderwijk',
-    'instance 1 vlan 20,30,40,50,60,70,80',
+    'instance 1 vlan 20,30,40,50,60,70',
     'spanning-tree mst 1 priority 8192'
 ]
 
