@@ -77,18 +77,12 @@ l2_interface_config = [
 
 # Define commands needed for DHCP configuration
 dhcp_config = [
-    'ip dhcp excluded-address 10.200.20.1 10.200.20.10', 
-    'ip dhcp excluded-address 10.200.30.1 10.200.30.5',
-    'ip dhcp excluded-address 10.200.40.1 10.200.40.5',
-    'ip dhcp excluded-address 10.200.50.1 10.200.50.5',
-    'ip dhcp excluded-address 10.200.60.1 10.200.60.5',
-    'ip dhcp excluded-address 10.200.64.1 10.200.64.5',
-    'ip dhcp pool Vlan20', 'network 10.200.20.0 255.255.255.192', 'default-router 10.200.20.1', 'lease 0 8',
-    'ip dhcp pool Vlan30', 'network 10.200.30.0 255.255.255.192', 'default-router 10.200.30.1', 'lease 0 8',
-    'ip dhcp pool Vlan40', 'network 10.200.40.0 255.255.255.0', 'default-router 10.200.40.1', 'lease 0 8',
-    'ip dhcp pool Vlan50', 'network 10.200.50.0 255.255.255.0', 'default-router 10.200.50.1', 'lease 0 8',
-    'ip dhcp pool Vlan60', 'network 10.200.60.0 255.255.252.0', 'default-router 10.200.60.1', 'lease 0 8',
-    'ip dhcp pool Vlan70', 'network 10.200.64.0 255.255.240.0', 'default-router 10.200.64.1', 'lease 0 8'
+    'ip dhcp excluded-address 10.200.20.1 10.200.20.10', 'ip dhcp pool Vlan20', 'network 10.200.20.0 255.255.255.192', 'default-router 10.200.20.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.200.30.1 10.200.30.5', 'ip dhcp pool Vlan30', 'network 10.200.30.0 255.255.255.192', 'default-router 10.200.30.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.200.40.1 10.200.40.5', 'ip dhcp pool Vlan40', 'network 10.200.40.0 255.255.255.0', 'default-router 10.200.40.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.200.50.1 10.200.50.5', 'ip dhcp pool Vlan50', 'network 10.200.50.0 255.255.255.0', 'default-router 10.200.50.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.200.60.1 10.200.60.5', 'ip dhcp pool Vlan60', 'network 10.200.60.0 255.255.252.0', 'default-router 10.200.60.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.200.64.1 10.200.64.5', 'ip dhcp pool Vlan70', 'network 10.200.64.0 255.255.240.0', 'default-router 10.200.64.1', 'lease 0 8'
 ]
 
 # Define commands needed for OSPF configuration
@@ -109,6 +103,15 @@ mstp_config = [
     'name Harderwijk',
     'instance 1 vlan 20,30,40,50,60,70',
     'spanning-tree mst 1 priority 0'
+]
+
+# Define commands needed for ACL configuration
+acl_config = [
+    'ip access-list extended 20',
+    'remark allow SSH on VLAN20',
+    'permit 10.200.20.0 0.0.0.63'
+    'line vty 15'
+    'access-class 20 in'
 ]
 
 # Defina commands needed to execute commands with printing funtion as visual check
@@ -146,6 +149,9 @@ result = connection.send_config_set(ospf_config)
 print(result)
 
 result = connection.send_config_set(mstp_config)
+print(result)
+
+result = connection.send_config_set(acl_config)
 print(result)
 
 # Disconnect the SSH connection with the device

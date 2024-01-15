@@ -69,6 +69,15 @@ ospf_config = [
     'interface GigabitEthernet0/0/1', 'ip ospf priority 0'
 ]
 
+# Define commands needed for ACL configuration
+acl_config = [
+    'ip access-list extended 20',
+    'remark allow SSH on VLAN20',
+    'permit 10.200.20.0 0.0.0.63'
+    'line vty 15'
+    'access-class 20 in'
+]
+
 # Defina commands needed to execute commands with printing funtion as visual check
 result = connection.send_config_set(hostname_config)
 print(result)
@@ -92,6 +101,9 @@ result = connection.send_config_set(svi_config)
 print(result)
 
 result = connection.send_config_set(ospf_config)
+print(result)
+
+result = connection.send_config_set(acl_config)
 print(result)
 
 # Disconnect the SSH connection with the device
