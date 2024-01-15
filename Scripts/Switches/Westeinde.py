@@ -27,13 +27,13 @@ domain_name_config = [
 
 # Define commands needed for SNTP configuration
 sntp_config = [
-    'sntp server 10.10.0.7'
+    'sntp server 10.10.0.14'
     'clock timezone CET 1'
 ]
 
 # Define command needed for DNS configuration
 dns_config = [
-    'ip name-server 10.10.0.7'
+    'ip name-server 10.10.0.14'
 ]
 
 # Define commands needed for VLAN configuration
