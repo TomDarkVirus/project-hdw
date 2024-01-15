@@ -1,12 +1,16 @@
 from netmiko import ConnectHandler
+import getpass
+
+# Define 'passwd' to prompt the user for a password
+passwd = getpass.getpass('Please enter password: ')
 
 # Define device information needed for SSH connection
 Nunspeet = {
     "device_type": "cisco_ios",
     "host": "10.200.20.2",
     "username": "Nunspeet",
-    "password": "Wachtwoord12!",
-    "secret": "Wachtwoord12!"
+    "password": passwd,
+    "secret": passwd
 }
 
 # Setup the connection to the device
