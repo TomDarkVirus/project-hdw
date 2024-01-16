@@ -55,20 +55,30 @@ vlan_interface_config = [
     'interface Vlan11', 'ip address 10.1.4.1 255.255.255.252'
 ]
 
-# Define commands needed for L3 interface configuration
-l3_interface_config = [
-    'interface GigabitEthernet0/0/0', 'ip address 10.168.0.130 255.255.255.240',
-    'interface GigabitEthernet0/0/1', 'ip address 10.168.0.34 255.255.255.240'
+# Define commands needed for L3 interface ipv4 configuration
+l3_interface_ipv4_config = [
+    'interface GigabitEthernet0/0/0', 'ip address 10.0.5.1 255.255.255.252',
+    'interface GigabitEthernet0/0/1', 'ip address 10.0.5.5 255.255.255.252'
 ]
 
-# Define commands needed for SVI configutation
-svi_config = [
+# Define commands needed for L3 interface ipv6 configuration
+l3_interface_ipv6_config = [
+
+]
+
+# Define commands needed for SVI ipv4 configutation
+svi_ipv4_config = [
     'interface GigabitEthernet0/0/0.20', 'encapsulation dot1Q 20', 'ip address 10.200.20.1 255.255.255.192',
     'interface GigabitEthernet0/0/0.30', 'encapsulation dot1Q 30', 'ip address 10.200.30.1 255.255.255.192',
     'interface GigabitEthernet0/0/0.40', 'encapsulation dot1Q 40', 'ip address 10.200.40.1 255.255.255.0',
     'interface GigabitEthernet0/0/0.50', 'encapsulation dot1Q 50', 'ip address 10.200.50.1 255.255.255,0',
     'interface GigabitEthernet0/0/0.60', 'encapsulation dot1Q 60', 'ip address 10.200.60.1 255.255.252.0',
     'interface GigabitEthernet0/0/0.70', 'encapsulation dot1Q 70', 'ip address 10.200.64.1 255.255.240.0'
+]
+
+# Define commands needed for SVI ipv6 configutation
+svi_ipv6_config = [
+
 ]
 
 # Define commands needed for L2 interface configuration
@@ -93,10 +103,18 @@ dhcp_config = [
 ospf_config = [
     'router ospf 1',
     'router-id 1.1.1.1',
-    'network 10.168.0.32 0.0.0.15 area 0',
-    'network 10.168.0.128 0.0.0.15 area 0',
+    'network 10.0.5.0 0.0.0.3 area 0',
+    'network 10.0.5.4 0.0.0.3 area 0',
     'interface GigabitEthernet0/0/0', 'ip ospf priority 200',
     'interface GigabitEthernet0/0/1', 'ip ospf priority 200'
+]
+
+# Define commands needed for OSPFv3 configuration
+ospfv3_config = [
+    'ipv6 router ospf 1'
+    'router-id 1.1.1.1'
+    'interface GigabitEthernet0/0/0', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 200',
+    'interface GigabitEthernet0/0/1', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 200'
 ]
 
 # Define commands needed for MSTP configuration
@@ -137,10 +155,10 @@ print(result)
 result = connection.send_config_set(vlan_interface_config)
 print(result)
 
-result = connection.send_config_set(l3_interface_config)
+result = connection.send_config_set(l3_interface_ipv4_config)
 print(result)
 
-result = connection.send_config_set(svi_config)
+result = connection.send_config_set(svi_ipv4_config)
 print(result)
 
 result = connection.send_config_set(l2_interface_config)
@@ -150,6 +168,9 @@ result = connection.send_config_set(dhcp_config)
 print(result)
 
 result = connection.send_config_set(ospf_config)
+print(result)
+
+result = connection.send_config_set(ospfv3_config)
 print(result)
 
 result = connection.send_config_set(mstp_config)

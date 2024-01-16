@@ -47,14 +47,19 @@ vlan_config = [
     'vlan 70', 'name Studenten'
 ]
 
-# Define commands needed for L3 interface configuration
-l3_interface_config = [
-    'interface GigabitEthernet0/0/0', 'ip address 10.168.0.131 255.255.255.240',
-    'interface GigabitEthernet0/0/1', 'ip address 10.168.0.67 255.255.255.240'
+# Define commands needed for L3 interface ipv4 configuration
+l3_interface_ipv4_config = [
+    'interface GigabitEthernet0/0/0', 'ip address 10.0.5.2 255.255.255.240',
+    'interface GigabitEthernet0/0/1', 'ip address 10.0.5.10 255.255.255.240'
 ]
 
-# Define commands needed for SVI configutation
-svi_config = [
+# Define commands needed for L3 interface ipv6 configuration
+l3_interface_ipv6_config = [
+
+]
+
+# Define commands needed for SVI ipv4 configutation
+svi_ipv4_config = [
     'interface GigabitEthernet0/0/0.20', 'encapsulation dot1Q 20', 'ip address 10.200.20.3 255.255.255.192',
     'interface GigabitEthernet0/0/0.30', 'encapsulation dot1Q 30', 'ip address 10.200.30.3 255.255.255.192',
     'interface GigabitEthernet0/0/0.40', 'encapsulation dot1Q 40', 'ip address 10.200.40.3 255.255.255.0',
@@ -63,14 +68,27 @@ svi_config = [
     'interface GigabitEthernet0/0/0.70', 'encapsulation dot1Q 70', 'ip address 10.200.64.3 255.255.240.0'
 ]
 
+# Define commands needed for SVI ipv6 configutation
+svi_ipv6_config = [
+
+]
+
 # Define commands needed for OSPF configuration
 ospf_config = [
     'router ospf 1',
     'router-id 2.2.2.2',
-    'network 10.168.0.64 0.0.0.15 area 0',
-    'network 10.168.0.128 0.0.0.15 area 0',
-    'interface GigabitEthernet0/0/0', 'ip ospf priority 100',
-    'interface GigabitEthernet0/0/1', 'ip ospf priority 100'
+    'network 10.0.5.0 0.0.0.3 area 0',
+    'network 10.0.5.8 0.0.0.3 area 0',
+    'interface GigabitEthernet0/0/0', 'ip ospf priority 0',
+    'interface GigabitEthernet0/0/1', 'ip ospf priority 0'
+]
+
+# Define commands needed for OSPFv3 configuration
+ospfv3_config = [
+    'ipv6 router ospf 1'
+    'router-id 3.3.3.3'
+    'interface GigabitEthernet0/0/0', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 0',
+    'interface GigabitEthernet0/0/1', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 0'
 ]
 
 # Define commands needed for ACL configuration
@@ -98,13 +116,16 @@ print(result)
 result = connection.send_config_set(vlan_config)
 print(result)
 
-result = connection.send_config_set(l3_interface_config)
+result = connection.send_config_set(l3_interface_ipv4_config)
 print(result)
 
-result = connection.send_config_set(svi_config)
+result = connection.send_config_set(svi_ipv4_config)
 print(result)
 
 result = connection.send_config_set(ospf_config)
+print(result)
+
+result = connection.send_config_set(ospfv3_config)
 print(result)
 
 result = connection.send_config_set(acl_config)
