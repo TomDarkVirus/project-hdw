@@ -55,7 +55,9 @@ l3_interface_ipv4_config = [
 
 # Define commands needed for L3 interface ipv6 configuration
 l3_interface_ipv6_config = [
-
+    'interface GigabitEthernet0/0/0', 'ipv6 address 200:200:20:3::/64 eui-64', 'ipv6 enable',
+    'interface GigabitEthernet0/0/1', 'ipv6 address 200:200:20:1::/64 eui-64', 'ipv6 enable',
+    'ipv6 unicast-routing'
 ]
 
 # Define commands needed for SVI ipv4 configutation
