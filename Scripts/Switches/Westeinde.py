@@ -27,7 +27,7 @@ domain_name_config = [
 
 # Define commands needed for SNTP configuration
 sntp_config = [
-    'sntp server 10.10.0.14'
+    'sntp server 10.10.0.14',
     'clock timezone CET 1'
 ]
 

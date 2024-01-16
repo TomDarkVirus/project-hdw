@@ -28,7 +28,7 @@ domain_name_config = [
 
 # Define commands needed for NTP configuration
 ntp_config = [
-    'ntp server 10.10.0.14'
+    'ntp server 10.10.0.14',
     'clock timezone CET 1'
 ]
 
@@ -111,8 +111,8 @@ ospf_config = [
 
 # Define commands needed for OSPFv3 configuration
 ospfv3_config = [
-    'ipv6 router ospf 1'
-    'router-id 1.1.1.1'
+    'ipv6 router ospf 1',
+    'router-id 1.1.1.1',
     'interface GigabitEthernet0/0/0', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 200',
     'interface GigabitEthernet0/0/1', 'ipv6 ospf 1 area 0', 'ipv6 ospfv3 priority 200'
 ]
@@ -131,8 +131,8 @@ mstp_config = [
 acl_config = [
     'ip access-list extended 20',
     'remark allow SSH on VLAN20',
-    'permit 10.200.20.0 0.0.0.63'
-    'line vty 15'
+    'permit 10.200.20.0 0.0.0.63',
+    'line vty 15',
     'access-class 20 in'
 ]
 
