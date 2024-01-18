@@ -15,8 +15,8 @@ $subnetName = "default"
 
 # Virtual machine details
 #$vmName = "TESTDC"
-$adminUsername = "administrator1"
-$adminPassword = "Wachtwoord123!"
+#$adminUsername = "administrator1"
+#$adminPassword = "Wachtwoord123!"
 $imageOffer = "WindowsServer"
 $imageSku = "2016-Datacenter"
 $vmSize = "Standard_D4as_v5"

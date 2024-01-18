@@ -15,9 +15,9 @@ $subnetName = "default"
 
 # Virtual machine details
 #$vmName = "TESTDC"
-$adminUsername = "administrator1"
-$adminPassword = "Wachtwoord123!"
-$imageOffer = "UbuntuServer"
+#$adminUsername = "administrator1"
+#$adminPassword = "Wachtwoord123!"
+$imageOffer = "ntg_ubuntu_22_04_dev"
 $imageSku = "ntg_ubuntu_22_04_dev"
 $vmSize = "Standard_B2ms"
 
@@ -36,7 +36,7 @@ $nsg | Set-AzNetworkSecurityGroup
 $nic = New-AzNetworkInterface -ResourceGroupName $resourceGroupName -Name $vmName -Location $location -SubnetId $virtualNetwork.Subnets[0].Id -PublicIpAddressId $publicIpAddress.Id -NetworkSecurityGroupId $nsg.Id
 
 # Define the VM configuration
-$vmConfig = New-AzVMConfig -VMName $vmName -VMSize $vmSize | Set-AzVMOperatingSystem -Windows -ComputerName $vmName -Credential (New-Object PSCredential -ArgumentList $adminUsername, (ConvertTo-SecureString -AsPlainText $adminPassword -Force)) | Set-AzVMSourceImage -PublisherName "MicrosoftWindowsServer" -Offer $imageOffer -Skus $imageSku -Version "latest" | Add-AzVMNetworkInterface -Id $nic.Id
+$vmConfig = New-AzVMConfig -VMName $vmName -VMSize $vmSize | Set-AzVMOperatingSystem -Linux -ComputerName $vmName -Credential (New-Object PSCredential -ArgumentList $adminUsername, (ConvertTo-SecureString -AsPlainText $adminPassword -Force)) | Set-AzVMSourceImage -PublisherName "ntegralinc1586961136942" -Offer $imageOffer -Skus $imageSku -Version "latest" | Add-AzVMNetworkInterface -Id $nic.Id
 
 # Create the VM
-New-AzVM -ResourceGroupName $resourceGroupName -Location $location -VM $vmConfig -LicenseType "Windows_Server"
+New-AzVM -ResourceGroupName $resourceGroupName -Location $location -VM $vmConfig
