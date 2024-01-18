@@ -18,8 +18,8 @@ $subnetName = "default"
 $adminUsername = "administrator1"
 $adminPassword = "Wachtwoord123!"
 $imageOffer = "WindowsServer"
-$imageSku = "2019-Datacenter"
-$vmSize = "Standard_B2ms"
+$imageSku = "2016-Datacenter"
+$vmSize = "Standard_D4as_v5"
 
 # Getting existing network settings
 $virtualNetwork = Get-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Name $virtualNetworkName
