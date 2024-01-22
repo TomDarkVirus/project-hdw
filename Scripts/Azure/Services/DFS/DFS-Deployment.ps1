@@ -23,6 +23,7 @@ if ($disk) {
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare"
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\share1"
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\share2"
+        New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\User_Maps"
     }
 
     #Remove-SmbShare -Name Fileshare
@@ -34,6 +35,7 @@ if ($disk) {
     # Add Folder Targets
     New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder1" -TargetPath "\\FRANKENSTEIN\Fileshare\share1"
     New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder2" -TargetPath "\\FRANKENSTEIN\Fileshare\share2"
+    New-DfsnFolder -Path "\\banaan.nl\Fileshare\User Mappen" -TargetPath "\\FRANKENSTEIN\Fileshare\User_Maps"
 }
 else {
     Write-Host "No uninitialized disks found."
