@@ -24,6 +24,9 @@ if ($disk) {
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\share1"
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\share2"
         New-Item -ItemType Directory -Path "$($driveLetter):\Fileshare\User_Maps"
+        New-Item -ItemType Directory -Path "$($driveletter):\Admin"
+        New-Item -ItemType Directory -Path "$($driveletter):\Admin\Quota_Management"
+        
     }
 
     #Remove-SmbShare -Name Fileshare
