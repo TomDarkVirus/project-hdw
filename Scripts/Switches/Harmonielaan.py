@@ -48,7 +48,7 @@ vlan_config = [
 
 # Define commands needed for SVI ipv4 configuration
 svi_ipv4_config = [
-    'interface Vlan10', 'ip address 10.201.20.3 255.255.255.192',
+    'interface Vlan20', 'ip address 10.201.20.3 255.255.255.192',
 ]
 
 # Define commands needed for L2 interface configuration
