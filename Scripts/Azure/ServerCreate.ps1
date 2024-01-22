@@ -38,5 +38,15 @@ $nic = New-AzNetworkInterface -ResourceGroupName $resourceGroupName -Name $vmNam
 # Define the VM configuration
 $vmConfig = New-AzVMConfig -VMName $vmName -VMSize $vmSize | Set-AzVMOperatingSystem -Windows -ComputerName $vmName -Credential (New-Object PSCredential -ArgumentList $adminUsername, (ConvertTo-SecureString -AsPlainText $adminPassword -Force)) | Set-AzVMSourceImage -PublisherName "MicrosoftWindowsServer" -Offer $imageOffer -Skus $imageSku -Version "latest" | Add-AzVMNetworkInterface -Id $nic.Id
 
+# Add an additional data disk
+$diskConfig = New-AzDiskConfig -SkuName "Standard_LRS" -Location $location -CreateOption Empty -DiskSizeGB 256
+$dataDisk = New-AzDisk -ResourceGroupName $resourceGroupName -DiskName "${vmName}DataDisk1" -Disk $diskConfig
+$vmConfig = Add-AzVMDataDisk -VM $vmConfig -Name "${vmName}DataDisk1" -CreateOption Attach -ManagedDiskId $dataDisk.Id -Lun 0
+
+# Set DNS server using Custom Script Extension
+$scriptConfig = @{
+    scriptPath = "C:\Users\tomku\Documents\School\Github\project-hdw\Scripts\Azure\setDNSServer.ps1"  # Path to a script that sets DNS server (see example below)
+}
+
 # Create the VM
 New-AzVM -ResourceGroupName $resourceGroupName -Location $location -VM $vmConfig -LicenseType "Windows_Server"
