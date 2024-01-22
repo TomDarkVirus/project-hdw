@@ -4,10 +4,10 @@ import getpass
 # Define 'passwd' to prompt the user for a password
 passwd = getpass.getpass('Please enter password: ')
 
-# Define device information needed for SSH connection
+# Create a dictionary with device information needed for SSH connection
 Westeinde = {
     "device_type": "cisco_s300",
-    "host": "10.200.20.4",
+    "host": "10.201.20.2",
     "username": "Westeinde",
     "password": passwd
 }
@@ -22,7 +22,7 @@ hostname_config = [
 
 # Defina command needed for domain name configuration
 domain_name_config = [
-    'ip domain name IJsselstreek.edu'
+    'ip domain name ijsselstreek-university.nl'
 ]
 
 # Define commands needed for SNTP configuration
@@ -44,6 +44,11 @@ vlan_config = [
     'vlan 50 name Staff',
     'vlan 60 name Gasten',
     'vlan 70 name Studenten'
+]
+
+# Define commands needed for SVI ipv4 configuration
+svi_ipv4_config = [
+    'interface Vlan10', 'ip address 10.201.20.2 255.255.255.192',
 ]
 
 # Define commands needed for L2 interface configuration
@@ -77,6 +82,9 @@ result = connection.send_config_set(dns_config)
 print(result)
 
 result = connection.send_config_set(vlan_config)
+print(result)
+
+result = connection.send_config_set(svi_ipv4_config)
 print(result)
 
 result = connection.send_config_set(l2_interface_config)

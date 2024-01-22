@@ -1,15 +1,14 @@
 # Deze commando's moeten handmatig worden uigevoerd zodat er een SSH verbinding mogelijk is voor automatisering.
-# Bij de regels waar ##### staat dient de gebruiker een eigen gebruikersnaam en wachtwoord in te voeren.
+# Bij de regels waar ##### staat dient de gebruiker een eigen hostname, gebruikersnaam en wachtwoord in te voeren.
 # De gebruiker en wachtwoord op de switch worden handmatig ingevoerd na een reset van het apparaat.
 
 # Switches
-
 ip ssh server
 ip ssh password-auth
 
 # Routers
-
-ip domain-name IJsselstreek.edu
+hostname #####
+ip domain name ijsselstreek-university.nl
 
 enable secret level 15 #####
 username ##### secret #####
