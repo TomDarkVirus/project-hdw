@@ -39,6 +39,27 @@ if ($disk) {
     New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder1" -TargetPath "\\FRANKENSTEIN\Fileshare\share1"
     New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder2" -TargetPath "\\FRANKENSTEIN\Fileshare\share2"
     New-DfsnFolder -Path "\\banaan.nl\Fileshare\User Mappen" -TargetPath "\\FRANKENSTEIN\Fileshare\User_Maps"
+
+    # quota management
+    # Specify the quota limit in bytes (500 MB in bytes)
+    $quotaLimitBytes = 500MB
+
+    # Specify the template name and description
+    $templateName = "500MB Limit"
+    $templateDescription = "Quota template to limit folder to 500 MB"
+
+    # Try to create a new quota template (it may already exist)
+    try {
+        New-FsrmQuotaTemplate -Name $templateName -Description $templateDescription -Size $quotaLimitBytes -ErrorAction Stop
+    } catch {
+        Write-Host "Quota template '$templateName' already exists."
+    }
+
+    # Get the created quota template
+    $template = Get-FsrmQuotaTemplate -Name $templateName
+
+    # Apply the template to a folder
+    Set-FsrmQuota -Path "\\DC01-ijs\Fileshare\ADMIN\Quota management" -TemplateName $template.Name
 }
 else {
     Write-Host "No uninitialized disks found."
