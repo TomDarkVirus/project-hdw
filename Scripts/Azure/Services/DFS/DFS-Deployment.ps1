@@ -60,6 +60,8 @@ if ($disk) {
 
     # Apply the template to a folder
     Set-FsrmQuota -Path "\\DC01-ijs\Fileshare\ADMIN\Quota management" -TemplateName $template.Name
+    
+    New-FsrmAutoQuota -Path "F:\Fileshare\User mappen" -Template "500MB_Quota_Template"
 }
 else {
     Write-Host "No uninitialized disks found."
