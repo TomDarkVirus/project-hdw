@@ -5,7 +5,7 @@ import getpass
 passwd = getpass.getpass('Please enter password: ')
 
 # Create a dictionary with device information needed for SSH connection
-Westeinde = {
+Kruithuis = {
     "device_type": "cisco_s300",
     "host": "10.201.20.4",
     "username": "admin",
@@ -13,7 +13,7 @@ Westeinde = {
 }
 
 # Setup the SSH connection to the device
-connection = ConnectHandler(**Westeinde)
+connection = ConnectHandler(**Kruithuis)
 
 # Define command needed for hostname configuration
 hostname_config = [
