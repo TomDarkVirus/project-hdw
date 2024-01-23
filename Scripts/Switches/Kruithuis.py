@@ -7,7 +7,7 @@ passwd = getpass.getpass('Please enter password: ')
 # Create a dictionary with device information needed for SSH connection
 Westeinde = {
     "device_type": "cisco_s300",
-    "host": "10.201.20.2",
+    "host": "10.201.20.4",
     "username": "admin",
     "password": passwd
 }
@@ -17,7 +17,7 @@ connection = ConnectHandler(**Westeinde)
 
 # Define command needed for hostname configuration
 hostname_config = [
-    'hostname SW4-Westeinde'
+    'hostname SW6-Kruithuis'
 ]
 
 # Defina command needed for domain name configuration
@@ -48,7 +48,7 @@ vlan_config = [
 
 # Define commands needed for SVI ipv4 configuration
 svi_ipv4_config = [
-    'interface Vlan20', 'ip address 10.201.20.2 255.255.255.192',
+    'interface Vlan20', 'ip address 10.201.20.4 255.255.255.192',
 ]
 
 # Define commands needed for L2 interface configuration
@@ -56,16 +56,6 @@ l2_interface_config = [
     'interface GigabitEthernet 1', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
     'interface GigabitEthernet 2', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
     'interface GigabitEthernet 3', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70'
-]
-
-# Define commands needed for MSTP configuration
-mstp_config = [
-    'spanning-tree mode mst',
-    'spanning-tree mst configuration',
-    'revision 1',
-    'name Harderwijk',
-    'instance 1 vlan 20,30,40,50,60,70',
-    'spanning-tree mst 1 priority 4096'
 ]
 
 # Defina commands needed to execute commands with printing funtion as visual check
@@ -88,9 +78,6 @@ result = connection.send_config_set(svi_ipv4_config)
 print(result)
 
 result = connection.send_config_set(l2_interface_config)
-print(result)
-
-result = connection.send_config_set(mstp_config)
 print(result)
 
 # Disconnect the SSH connection with the device

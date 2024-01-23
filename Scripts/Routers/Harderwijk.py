@@ -8,7 +8,7 @@ passwd = getpass.getpass('Please enter password: ')
 Harderwijk = {
     "device_type": "cisco_ios",
     "host": "10.201.20.1",
-    "username": "Harderwijk",
+    "username": "admin",
     "password": passwd,
     "secret": passwd
 }

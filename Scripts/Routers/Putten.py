@@ -8,7 +8,7 @@ passwd = getpass.getpass('Please enter password: ')
 Putten = {
     "device_type": "cisco_ios",
     "host": "10.203.20.1",
-    "username": "Putten",
+    "username": "admin",
     "password": passwd,
     "secret": passwd
 }
@@ -106,6 +106,11 @@ ospfv3_config = [
     'interface Vlan8', 'ospfv3 1 area 0 ipv6'
     ]
 
+# Define commands needed for static routing configuration
+static_route_config = [
+    'ip route 0.0.0.0 0.0.0.0 10.0.5.1'
+]
+
 # Defina commands needed to execute commands with printing funtion as visual check
 result = connection.send_config_set(hostname_config)
 print(result)
@@ -141,6 +146,9 @@ result = connection.send_config_set(ospf_config)
 print(result)
 
 result = connection.send_config_set(ospfv3_config)
+print(result)
+
+result = connection.send_config_set(static_route_config)
 print(result)
 
 # Disconnect the SSH connection with the device

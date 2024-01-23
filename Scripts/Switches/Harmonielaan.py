@@ -8,7 +8,7 @@ passwd = getpass.getpass('Please enter password: ')
 Harmonielaan = {
     "device_type": "cisco_s300",
     "host": "10.201.20.3",
-    "username": "Harmonielaan",
+    "username": "admin",
     "password": passwd
 }
 
