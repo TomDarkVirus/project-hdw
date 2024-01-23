@@ -20,3 +20,6 @@ line vty 0 15
 password #####
 login local
 transport input ssh
+
+# Server na installatie van monitoring
+# open syslog manager, start syslogging en instellen doorsturen naar logging server
