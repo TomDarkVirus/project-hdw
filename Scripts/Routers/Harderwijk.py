@@ -18,7 +18,7 @@ connection = ConnectHandler(**Harderwijk)
 
 # Define command needed for hostname configuration
 hostname_config = [
-    'hostname RT4-Harderwijk'
+    'hostname R4-Harderwijk'
 ]
 
 # Define command needed for domain name configuration
@@ -110,13 +110,13 @@ ospf_config = [
 ospfv3_config = [
     'router ospfv3 1',
     'router-id 4.4.4.4',
-    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 200',
-    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 200'
+    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 200',
+    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 200'
 ]
 
 # Define commands needed for static routing configuration
 static_route_config = [
-    'ip route 0.0.0.0 0.0.0.0 10.1.3.1'
+    'ip route 0.0.0.0 0.0.0.0 10.1.3.2'
 ]
 
 # Define commands needed for MSTP configuration

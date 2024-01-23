@@ -18,7 +18,7 @@ connection = ConnectHandler(**Putten)
 
 # Define command needed for hostname configuration
 hostname_config = [
-    'hostname RT6-Putten'
+    'hostname R6-Putten'
 ]
 
 # Defina command needed for domain name configuration
@@ -101,8 +101,8 @@ ospf_config = [
 ospfv3_config = [
     'router ospfv3 1',
     'router-id 6.6.6.6',
-    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 0',
-    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 0',
+    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 0',
+    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 0',
     'interface Vlan8', 'ospfv3 1 area 0 ipv6'
     ]
 

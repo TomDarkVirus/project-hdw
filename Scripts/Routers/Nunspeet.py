@@ -18,7 +18,7 @@ connection = ConnectHandler(**Nunspeet)
 
 # Define command needed for hostname configuration
 hostname_config = [
-    'hostname RT5-Nunspeet'
+    'hostname R5-Nunspeet'
 ]
 
 # Defina command needed for domain name configuration
@@ -88,8 +88,8 @@ ospf_config = [
 ospfv3_config = [
     'router ospfv3 1',
     'router-id 5.5.5.5',
-    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 100',
-    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ipv6 ospfv3 priority 100'
+    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 100',
+    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 100'
 ]
 
 # Define commands needed for static routing configuration
