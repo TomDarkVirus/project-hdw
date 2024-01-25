@@ -7,7 +7,7 @@ passwd = getpass.getpass('Please enter password: ')
 # Create a dictionary with device information needed for SSH connection
 Harderwijk = {
     "device_type": "cisco_ios",
-    "host": "10.201.20.1",
+    "host": "10.201.20.64",
     "username": "admin",
     "password": passwd,
     "secret": passwd
@@ -49,6 +49,11 @@ vlan_config = [
     'vlan 70', 'name Studenten'
 ]
 
+# Define commands needed for loopback address
+loopback_config = [
+    'interface loopback1', 'ip address 10.201.20.64 255.255.255.255'
+]
+
 # Define commands needed for SVI ipv4 configuration
 svi_ipv4_config = [
     'interface Vlan10', 'ip address 10.1.3.1 255.255.255.252',
@@ -76,10 +81,16 @@ l3_interface_ipv6_config = [
 
 # Define commands needed for L2 interface configuration
 l2_interface_config = [
-    'interface GigabitEthernet0/1/0', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
-    'interface GigabitEthernet0/1/1', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
+    'interface GigabitEthernet0/1/0', 'switchport mode trunk', 'switchport trunk allowed vlan none', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
+    'interface GigabitEthernet0/1/1', 'switchport mode trunk', 'switchport trunk allowed vlan none', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
     'interface GigabitEthernet0/1/2', 'switchport mode access', 'switchport access vlan 10',
     'interface GigabitEthernet0/1/3', 'switchport mode access', 'switchport access vlan 11'
+]
+
+# Define commands needed for Port Security configuration
+port_security_config = [
+    'interface GigabitEthernet0/1/2', 'switchport port-security', 'switchport port-security maximum 1', 'switchport port-security violation shutdown', 'switchport port-security mac-address sticky',
+    'interface GigabitEthernet0/1/3', 'switchport port-security', 'switchport port-security maximum 1', 'switchport port-security violation shutdown', 'switchport port-security mac-address sticky'
 ]
 
 # Define commands needed for DHCP with ipv4 configuration
@@ -116,7 +127,13 @@ ospfv3_config = [
 
 # Define commands needed for static routing configuration
 static_route_config = [
-    'ip route 0.0.0.0 0.0.0.0 10.1.3.2'
+    'ip route 0.0.0.0 0.0.0.0 10.1.3.2',
+    'ip route 10.12.1.0 255.255.255.252 10.0.5.2',
+    'ip route 10.12.2.0 255.255.255.252 10.0.5.2',
+    'ip route 10.69.42.0 255.255.255.252 10.1.3.2',
+    'ip route 172.16.0.0 255.255.0.0 10.0.5.2',
+    'ip route 192.168.13.0 255.255.255.0 10.0.5.2'
+
 ]
 
 # Define commands needed for MSTP configuration
@@ -127,6 +144,17 @@ mstp_config = [
     'name Harderwijk',
     'instance 1 vlan 20,30,40,50,60,70',
     'spanning-tree mst 1 priority 0'
+]
+
+# Define commmands needed for Radius configuration
+radius_config = [
+    'aaa group server radius azure',
+    'server name azure',
+    'radius server azure',
+    'address ipv4 10.10.0.14',
+    'key Wachtwoord123',
+    'exit',
+    'aaa authentication login default group azure local'
 ]
 
 # Defina commands needed to execute commands with printing funtion as visual check
@@ -145,6 +173,9 @@ print(result)
 result = connection.send_config_set(vlan_config)
 print(result)
 
+result = connection.send_config_set(loopback_config)
+print(result)
+
 result = connection.send_config_set(svi_ipv4_config)
 print(result)
 
@@ -155,6 +186,9 @@ result = connection.send_config_set(l3_interface_ipv6_config)
 print(result)
 
 result = connection.send_config_set(l2_interface_config)
+print(result)
+
+result = connection.send_config_set(port_security_config)
 print(result)
 
 result = connection.send_config_set(dhcp_ipv4_config)
@@ -170,6 +204,9 @@ result = connection.send_config_set(static_route_config)
 print(result)
 
 result = connection.send_config_set(mstp_config)
+print(result)
+
+result = connection.send_config_set(radius_config)
 print(result)
 
 # Disconnect the SSH connection with the device

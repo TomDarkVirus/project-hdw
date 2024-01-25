@@ -1,4 +1,4 @@
-# Deze commando's moeten handmatig worden uigevoerd zodat er een SSH verbinding mogelijk is voor automatisering.
+# Deze commando's moeten handmatig worden uitgevoerd zodat er een SSH verbinding mogelijk is voor automatisering.
 # Bij de regels waar ##### staat dient de gebruiker een eigen hostname, gebruikersnaam en wachtwoord in te voeren.
 # De gebruiker en wachtwoord op de switch worden handmatig ingevoerd na een reset van het apparaat.
 
@@ -20,6 +20,3 @@ line vty 0 15
 password #####
 login local
 transport input ssh
-
-# Server na installatie van monitoring
-# open syslog manager, start syslogging en instellen doorsturen naar logging server
