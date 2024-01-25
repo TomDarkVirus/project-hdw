@@ -1,20 +1,23 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define 'passwd' to prompt the user for a password
-passwd = getpass.getpass('Please enter password: ')
+# Define variables to prompt the user for a login credentials
+username = input('Please enter your username: ')
+password = getpass.getpass('Please enter your password: ')
+enable = getpass.getpass('Please enter the EXEC password: ')
 
 # Create a dictionary with device information needed for SSH connection
 Putten = {
     "device_type": "cisco_ios",
     "host": "10.203.20.64",
-    "username": "admin",
-    "password": passwd,
-    "secret": passwd
+    "username": username,
+    "password": password,
+    "secret": enable
 }
 
 # Setup the connection to the device
 connection = ConnectHandler(**Putten)
+connection.enable()
 
 # Define command needed for hostname configuration
 hostname_config = [
@@ -39,7 +42,7 @@ dns_config = [
 
 # Define commands needed for VLAN configuration
 vlan_config = [
-    'vlan 8', 'name IJsselstreek'
+    'vlan 8', 'name Ermelo-Putten',
     'vlan 20', 'name Systeembeheer',
     'vlan 30', 'name Directie',
     'vlan 40', 'name Docenten',
@@ -111,9 +114,9 @@ ospf_config = [
 ospfv3_config = [
     'router ospfv3 1',
     'router-id 6.6.6.6',
-    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 0',
-    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 0',
-    'interface Vlan8', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 0'
+    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0',
+    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0',
+    'interface Vlan8', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0'
     ]
 
 # Define commands needed for static routing configuration

@@ -1,20 +1,23 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define 'passwd' to prompt the user for a password
-passwd = getpass.getpass('Please enter password: ')
+# Define variables to prompt the user for a login credentials
+username = input('Please enter your username: ')
+password = getpass.getpass('Please enter your password: ')
+enable = getpass.getpass('Please enter the EXEC password: ')
 
 # Create a dictionary with device information needed for SSH connection
 Nunspeet = {
     "device_type": "cisco_ios",
     "host": "10.202.20.64",
-    "username": "admin",
-    "password": passwd,
-    "secret": passwd
+    "username": username,
+    "password": password,
+    "secret": enable
 }
 
 # Setup the connection to the device
 connection = ConnectHandler(**Nunspeet)
+connection.enable()
 
 # Define command needed for hostname configuration
 hostname_config = [
@@ -94,8 +97,8 @@ ospf_config = [
 ospfv3_config = [
     'router ospfv3 1',
     'router-id 5.5.5.5',
-    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 100',
-    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 priority 100'
+    'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 100',
+    'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 100'
 ]
 
 # Define commands needed for static routing configuration

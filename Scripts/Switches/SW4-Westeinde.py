@@ -1,15 +1,16 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define 'passwd' to prompt the user for a password
-passwd = getpass.getpass('Please enter password: ')
+# Define variables to prompt the user for a login credentials
+username = input('Please enter your username: ')
+password = getpass.getpass('Please enter your password: ')
 
 # Create a dictionary with device information needed for SSH connection
 Westeinde = {
     "device_type": "cisco_s300",
     "host": "10.201.20.2",
-    "username": "admin",
-    "password": passwd
+    "username": username,
+    "password": password
 }
 
 # Setup the SSH connection to the device
@@ -53,9 +54,9 @@ svi_ipv4_config = [
 
 # Define commands needed for L2 interface configuration
 l2_interface_config = [
-    'interface GigabitEthernet 1', 'switchport mode trunk', 'switchport trunk allowed vlan none', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
-    'interface GigabitEthernet 2', 'switchport mode trunk', 'switchport trunk allowed vlan none', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
-    'interface GigabitEthernet 3', 'switchport mode trunk', 'switchport trunk allowed vlan none', 'switchport trunk allowed vlan add 20,30,40,50,60,70'
+    'interface GigabitEthernet 1', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
+    'interface GigabitEthernet 2', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
+    'interface GigabitEthernet 3', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70'
 ]
 
 # Define command needed for default gateway configuration
