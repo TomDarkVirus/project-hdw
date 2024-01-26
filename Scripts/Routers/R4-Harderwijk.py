@@ -65,12 +65,12 @@ loopback_config = [
 svi_ipv4_config = [
     'interface Vlan10', 'ip address 10.1.3.1 255.255.255.252',
     'interface Vlan11', 'ip address 10.1.4.1 255.255.255.252',
-    'interface Vlan20', 'ip address 10.201.20.1 255.255.255.192',
-    'interface Vlan30', 'ip address 10.201.30.1 255.255.255.192',
-    'interface Vlan40', 'ip address 10.201.40.1 255.255.255.0',
-    'interface Vlan50', 'ip address 10.201.50.1 255.255.255.0',
-    'interface Vlan60', 'ip address 10.201.60.1 255.255.252.0',
-    'interface Vlan70', 'ip address 10.201.64.1 255.255.240.0'
+    'interface Vlan20', 'ip address 10.201.20.1 255.255.255.192', 'ip helper-address 192.168.13.41',
+    'interface Vlan30', 'ip address 10.201.30.1 255.255.255.192', 'ip helper-address 192.168.13.41',
+    'interface Vlan40', 'ip address 10.201.40.1 255.255.255.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan50', 'ip address 10.201.50.1 255.255.255.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan60', 'ip address 10.201.60.1 255.255.252.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan70', 'ip address 10.201.64.1 255.255.240.0', 'ip helper-address 192.168.13.41'
 ]
 
 # Define commands needed for L3 interface ipv4 configuration
@@ -102,12 +102,12 @@ port_security_config = [
 
 # Define commands needed for DHCP with ipv4 configuration
 dhcp_ipv4_config = [
-    'ip dhcp excluded-address 10.201.20.1 10.201.20.10', 'ip dhcp pool Vlan20', 'network 10.201.20.0 255.255.255.192', 'default-router 10.201.20.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.201.30.1 10.201.30.5', 'ip dhcp pool Vlan30', 'network 10.201.30.0 255.255.255.192', 'default-router 10.201.30.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.201.40.1 10.201.40.5', 'ip dhcp pool Vlan40', 'network 10.201.40.0 255.255.255.0', 'default-router 10.201.40.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.201.50.1 10.201.50.5', 'ip dhcp pool Vlan50', 'network 10.201.50.0 255.255.255.0', 'default-router 10.201.50.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.201.60.1 10.201.60.5', 'ip dhcp pool Vlan60', 'network 10.201.60.0 255.255.252.0', 'default-router 10.201.60.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.201.64.1 10.201.64.5', 'ip dhcp pool Vlan70', 'network 10.201.64.0 255.255.240.0', 'default-router 10.201.64.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.20.1 10.201.20.10', 'ip dhcp pool Vlan20', 'relay source 10.201.20.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.201.20.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.30.1 10.201.30.5', 'ip dhcp pool Vlan30', 'relay source 10.201.30.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.201.30.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.40.1 10.201.40.5', 'ip dhcp pool Vlan40', 'relay source 10.201.40.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.201.40.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.50.1 10.201.50.5', 'ip dhcp pool Vlan50', 'relay source 10.201.50.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.201.50.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.60.1 10.201.60.5', 'ip dhcp pool Vlan60', 'relay source 10.201.60.0 255.255.252.0', 'relay destination 192.168.13.41', 'default-router 10.201.60.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.201.64.1 10.201.64.5', 'ip dhcp pool Vlan70', 'relay source 10.201.64.0 255.255.240.0', 'relay destination 192.168.13.41', 'default-router 10.201.64.1', 'lease 0 8'
 ]
 
 # Define commands needed for OSPF configuration

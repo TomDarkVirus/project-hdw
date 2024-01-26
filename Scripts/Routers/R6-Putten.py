@@ -47,12 +47,12 @@ dns_config = [
 # Define commands needed for VLAN configuration
 vlan_config = [
     'vlan 8', 'name Ermelo-Putten',
-    'vlan 20', 'name Systeembeheer',
-    'vlan 30', 'name Directie',
-    'vlan 40', 'name Docenten',
-    'vlan 50', 'name Staff',
-    'vlan 60', 'name Gasten',
-    'vlan 70', 'name Studenten'
+    'vlan 20', 'name Systeembeheer', 'ip helper-address 192.168.13.41',
+    'vlan 30', 'name Directie', 'ip helper-address 192.168.13.41',
+    'vlan 40', 'name Docenten', 'ip helper-address 192.168.13.41',
+    'vlan 50', 'name Staff', 'ip helper-address 192.168.13.41',
+    'vlan 60', 'name Gasten', 'ip helper-address 192.168.13.41',
+    'vlan 70', 'name Studenten', 'ip helper-address 192.168.13.41'
 ]
 
 # Define commands needed for loopback address
@@ -97,6 +97,16 @@ l2_interface_config = [
 # Define commands needed for Port Security configuration
 port_security_config = [
     'interface GigabitEthernet0/1/0', 'switchport port-security', 'switchport port-security maximum 1', 'switchport port-security violation shutdown', 'switchport port-security mac-address sticky'
+]
+
+# Define commands needed for DHCP with ipv4 configuration
+dhcp_ipv4_config = [
+    'ip dhcp excluded-address 10.203.20.1 10.203.20.10', 'ip dhcp pool Vlan20', 'relay source 10.203.20.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.203.20.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.203.30.1 10.203.30.5', 'ip dhcp pool Vlan30', 'relay source 10.203.30.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.203.30.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.203.40.1 10.203.40.5', 'ip dhcp pool Vlan40', 'relay source 10.203.40.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.203.40.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.203.50.1 10.203.50.5', 'ip dhcp pool Vlan50', 'relay source 10.203.50.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.203.50.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.203.60.1 10.203.60.5', 'ip dhcp pool Vlan60', 'relay source 10.203.60.0 255.255.252.0', 'relay destination 192.168.13.41', 'default-router 10.203.60.1', 'lease 0 8',
+    'ip dhcp excluded-address 10.203.64.1 10.203.64.5', 'ip dhcp pool Vlan70', 'relay source 10.203.64.0 255.255.240.0', 'relay destination 192.168.13.41', 'default-router 10.203.64.1', 'lease 0 8'
 ]
 
 # Define commands needed for OSPF configuration
