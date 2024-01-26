@@ -117,7 +117,7 @@ ospfv3_config = [
     'interface GigabitEthernet0/0/0', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0',
     'interface GigabitEthernet0/0/1', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0',
     'interface Vlan8', 'ospfv3 1 area 0 ipv6', 'ospfv3 1 ipv6 priority 0'
-    ]
+]
 
 # Define commands needed for static routing configuration
 static_route_config = [
@@ -132,6 +132,7 @@ static_route_config = [
 
 # Define commmands needed for Radius configuration
 radius_config = [
+    'aaa new-model',
     'aaa group server radius azure',
     'server name azure',
     'radius server azure',

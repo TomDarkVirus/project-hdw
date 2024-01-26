@@ -117,6 +117,7 @@ static_route_config = [
 
 # Define commmands needed for Radius configuration
 radius_config = [
+    'aaa new-model',
     'aaa group server radius azure',
     'server name azure',
     'radius server azure',
