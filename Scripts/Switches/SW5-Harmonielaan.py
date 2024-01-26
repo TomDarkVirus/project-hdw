@@ -35,10 +35,7 @@ sntp_config = [
 
 # Define command needed for DNS configuration
 dns_config = [
-    'ip name-server 10.10.0.14',
-    'ip name-server 10.10.0.15',
-    'ip name-server 192.168.13.99',
-    'ip name-server 192.168.13.150'
+    'ip name-server 10.10.0.14 10.10.0.15 192.168.13.99 192.168.13.150'
 ]
 
 # Define commands needed for VLAN configuration
