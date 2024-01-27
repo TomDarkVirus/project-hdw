@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define variables to prompt the user for a login credentials
+# Define variables to prompt the user for login credentials
 username = input('Please enter your username: ')
 password = getpass.getpass('Please enter your password: ')
 enable = getpass.getpass('Please enter the EXEC password: ')
@@ -36,7 +36,7 @@ ntp_config = [
     'clock timezone CET 1'
 ]
 
-# Define command needed for DNS configuration
+# Define commands needed for DNS configuration
 dns_config = [
     'ip name-server 10.10.0.14',
     'ip name-server 10.10.0.15',
@@ -84,12 +84,13 @@ l3_interface_ipv6_config = [
 
 # Define commands needed for DHCP with ipv4 configuration
 dhcp_ipv4_config = [
-    'ip dhcp excluded-address 10.202.20.1 10.202.20.10', 'ip dhcp pool Vlan20', 'relay source 10.202.20.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.202.20.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.202.30.1 10.202.30.5', 'ip dhcp pool Vlan30', 'relay source 10.202.30.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.202.30.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.202.40.1 10.202.40.5', 'ip dhcp pool Vlan40', 'relay source 10.202.40.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.202.40.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.202.50.1 10.202.50.5', 'ip dhcp pool Vlan50', 'relay source 10.202.50.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.202.50.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.202.60.1 10.202.60.5', 'ip dhcp pool Vlan60', 'relay source 10.202.60.0 255.255.252.0', 'relay destination 192.168.13.41', 'default-router 10.202.60.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.202.64.1 10.202.64.5', 'ip dhcp pool Vlan70', 'relay source 10.202.64.0 255.255.240.0', 'relay destination 192.168.13.41', 'default-router 10.202.64.1', 'lease 0 8'
+    'ip dhcp relay information option',
+    'ip dhcp pool Vlan20', 'relay source 10.202.20.0 255.255.255.192', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan30', 'relay source 10.202.30.0 255.255.255.192', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan40', 'relay source 10.202.40.0 255.255.255.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan50', 'relay source 10.202.50.0 255.255.255.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan60', 'relay source 10.202.60.0 255.255.252.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan70', 'relay source 10.202.64.0 255.255.240.0', 'relay destination 192.168.13.41'
 ]
 
 # Define commands needed for OSPF configuration
@@ -141,6 +142,13 @@ radius_config = [
     'aaa authentication login default group azure local'
 ]
 
+# Define Commands needed for SNMP configuration
+snmp_config = [
+    'snmp-server community comp-comm RO',
+    'snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart',
+    'snmp-server host 10.10.0.9 version 2c comp-comm'
+]
+
 # Defina commands needed to execute commands with printing funtion as visual check
 result = connection.send_config_set(hostname_config)
 print(result)
@@ -169,6 +177,9 @@ print(result)
 result = connection.send_config_set(l3_interface_ipv6_config)
 print(result)
 
+result = connection.send_config_set(dhcp_ipv4_config)
+print(result)
+
 result = connection.send_config_set(ospf_config)
 print(result)
 
@@ -179,6 +190,9 @@ result = connection.send_config_set(static_route_config)
 print(result)
 
 result = connection.send_config_set(radius_config)
+print(result)
+
+result = connection.send_config_set(snmp_config)
 print(result)
 
 # Disconnect the SSH connection with the device

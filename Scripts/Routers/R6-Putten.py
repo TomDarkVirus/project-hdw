@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define variables to prompt the user for a login credentials
+# Define variables to prompt the user for login credentials
 username = input('Please enter your username: ')
 password = getpass.getpass('Please enter your password: ')
 enable = getpass.getpass('Please enter the EXEC password: ')
@@ -36,7 +36,7 @@ ntp_config = [
     'clock timezone CET 1'
 ]
 
-# Define command needed for DNS configuration
+# Define commands needed for DNS configuration
 dns_config = [
     'ip name-server 10.10.0.14',
     'ip name-server 10.10.0.15',
@@ -47,12 +47,12 @@ dns_config = [
 # Define commands needed for VLAN configuration
 vlan_config = [
     'vlan 8', 'name Ermelo-Putten',
-    'vlan 20', 'name Systeembeheer', 'ip helper-address 192.168.13.41',
-    'vlan 30', 'name Directie', 'ip helper-address 192.168.13.41',
-    'vlan 40', 'name Docenten', 'ip helper-address 192.168.13.41',
-    'vlan 50', 'name Staff', 'ip helper-address 192.168.13.41',
-    'vlan 60', 'name Gasten', 'ip helper-address 192.168.13.41',
-    'vlan 70', 'name Studenten', 'ip helper-address 192.168.13.41'
+    'vlan 20', 'name Systeembeheer',
+    'vlan 30', 'name Directie',
+    'vlan 40', 'name Docenten',
+    'vlan 50', 'name Staff',
+    'vlan 60', 'name Gasten',
+    'vlan 70', 'name Studenten'
 ]
 
 # Define commands needed for loopback address
@@ -63,12 +63,12 @@ loopback_config = [
 # Define commands needed for SVI ipv4 configuration
 svi_ipv4_config = [
     'interface Vlan8', 'ip address 10.0.3.2 255.255.255.252',
-    'interface Vlan20', 'ip address 10.203.20.1 255.255.255.192',
-    'interface Vlan30', 'ip address 10.203.30.1 255.255.255.192',
-    'interface Vlan40', 'ip address 10.203.40.1 255.255.255.0',
-    'interface Vlan50', 'ip address 10.203.50.1 255.255.255.0',
-    'interface Vlan60', 'ip address 10.203.60.1 255.255.252.0',
-    'interface Vlan70', 'ip address 10.203.64.1 255.255.240.0'
+    'interface Vlan20', 'ip address 10.203.20.1 255.255.255.192', 'ip helper-address 192.168.13.41',
+    'interface Vlan30', 'ip address 10.203.30.1 255.255.255.192', 'ip helper-address 192.168.13.41',
+    'interface Vlan40', 'ip address 10.203.40.1 255.255.255.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan50', 'ip address 10.203.50.1 255.255.255.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan60', 'ip address 10.203.60.1 255.255.252.0', 'ip helper-address 192.168.13.41',
+    'interface Vlan70', 'ip address 10.203.64.1 255.255.240.0', 'ip helper-address 192.168.13.41'
 ]
 
 # Define commands needed for SVI ipv6 configutation
@@ -101,12 +101,13 @@ port_security_config = [
 
 # Define commands needed for DHCP with ipv4 configuration
 dhcp_ipv4_config = [
-    'ip dhcp excluded-address 10.203.20.1 10.203.20.10', 'ip dhcp pool Vlan20', 'relay source 10.203.20.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.203.20.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.203.30.1 10.203.30.5', 'ip dhcp pool Vlan30', 'relay source 10.203.30.0 255.255.255.192', 'relay destination 192.168.13.41', 'default-router 10.203.30.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.203.40.1 10.203.40.5', 'ip dhcp pool Vlan40', 'relay source 10.203.40.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.203.40.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.203.50.1 10.203.50.5', 'ip dhcp pool Vlan50', 'relay source 10.203.50.0 255.255.255.0', 'relay destination 192.168.13.41', 'default-router 10.203.50.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.203.60.1 10.203.60.5', 'ip dhcp pool Vlan60', 'relay source 10.203.60.0 255.255.252.0', 'relay destination 192.168.13.41', 'default-router 10.203.60.1', 'lease 0 8',
-    'ip dhcp excluded-address 10.203.64.1 10.203.64.5', 'ip dhcp pool Vlan70', 'relay source 10.203.64.0 255.255.240.0', 'relay destination 192.168.13.41', 'default-router 10.203.64.1', 'lease 0 8'
+    'ip dhcp relay information option',
+    'ip dhcp pool Vlan20', 'relay source 10.203.20.0 255.255.255.192', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan30', 'relay source 10.203.30.0 255.255.255.192', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan40', 'relay source 10.203.40.0 255.255.255.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan50', 'relay source 10.203.50.0 255.255.255.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan60', 'relay source 10.203.60.0 255.255.252.0', 'relay destination 192.168.13.41',
+    'ip dhcp pool Vlan70', 'relay source 10.203.64.0 255.255.240.0', 'relay destination 192.168.13.41'
 ]
 
 # Define commands needed for OSPF configuration
@@ -156,6 +157,13 @@ radius_config = [
     'aaa authentication login default group azure local'
 ]
 
+# Define Commands needed for SNMP configuration
+snmp_config = [
+    'snmp-server community comp-comm RO',
+    'snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart',
+    'snmp-server host 10.10.0.9 version 2c comp-comm'
+]
+
 # Defina commands needed to execute commands with printing funtion as visual check
 result = connection.send_config_set(hostname_config)
 print(result)
@@ -193,6 +201,9 @@ print(result)
 result = connection.send_config_set(port_security_config)
 print(result)
 
+result = connection.send_config_set(dhcp_ipv4_config)
+print(result)
+
 result = connection.send_config_set(ospf_config)
 print(result)
 
@@ -203,6 +214,9 @@ result = connection.send_config_set(static_route_config)
 print(result)
 
 result = connection.send_config_set(radius_config)
+print(result)
+
+result = connection.send_config_set(snmp_config)
 print(result)
 
 # Disconnect the SSH connection with the device

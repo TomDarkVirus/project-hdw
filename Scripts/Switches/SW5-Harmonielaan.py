@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define variables to prompt the user for a login credentials
+# Define variables to prompt the user for login credentials
 username = input('Please enter your username: ')
 password = getpass.getpass('Please enter your password: ')
 
@@ -73,6 +73,13 @@ mstp_config = [
     'name Harderwijk',
     'instance 1 vlan 20,30,40,50,60,70',
     'spanning-tree mst 1 priority 8192'
+]
+
+# Define Commands needed for SNMP configuration
+snmp_config = [
+    'snmp-server server',
+    'snmp-server community comp-comm ro view Default',
+    'snmp-server host 10.10.0.9 traps version 2c comp-comm udp-port 161'
 ]
 
 # Defina commands needed to execute commands with printing funtion as visual check

@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define variables to prompt the user for a login credentials
+# Define variables to prompt the user for login credentials
 username = input('Please enter your username: ')
 password = getpass.getpass('Please enter your password: ')
 
@@ -57,6 +57,7 @@ svi_ipv4_config = [
 l2_interface_config = [
     'interface GigabitEthernet 1', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
     'interface GigabitEthernet 2', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
+    'interface GigabitEthernet 3', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70',
     'interface GigabitEthernet 3', 'switchport mode trunk', 'switchport trunk allowed vlan add 20,30,40,50,60,70'
 ]
 
@@ -73,6 +74,13 @@ mstp_config = [
     'name Deventer',
     'instance 1 vlan 20,30,40,50,60,70',
     'spanning-tree mst 1 priority 0'
+]
+
+# Define Commands needed for SNMP configuration
+snmp_config = [
+    'snmp-server server',
+    'snmp-server community comp-comm ro view Default',
+    'snmp-server host 10.10.0.9 traps version 2c comp-comm udp-port 161'
 ]
 
 # Defina commands needed to execute commands with printing funtion as visual check
@@ -101,6 +109,9 @@ result = connection.send_config_set(default_gateway_config)
 print(result)
 
 result = connection.send_config_set(mstp_config)
+print(result)
+
+result = connection.send_config_set(snmp_config)
 print(result)
 
 # Disconnect the SSH connection with the device

@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import getpass
 
-# Define variables to prompt the user for a login credentials
+# Define variables to prompt the user for login credentials
 username = input('Please enter your username: ')
 password = getpass.getpass('Please enter your password: ')
 
@@ -75,6 +75,13 @@ mstp_config = [
     'spanning-tree mst 1 priority 4096'
 ]
 
+# Define Commands needed for SNMP configuration
+snmp_config = [
+    'snmp-server server',
+    'snmp-server community comp-comm ro view Default',
+    'snmp-server host 10.10.0.9 traps version 2c comp-comm udp-port 161'
+]
+
 # Defina commands needed to execute commands with printing funtion as visual check
 result = connection.send_config_set(hostname_config)
 print(result)
@@ -101,6 +108,9 @@ result = connection.send_config_set(default_gateway_config)
 print(result)
 
 result = connection.send_config_set(mstp_config)
+print(result)
+
+result = connection.send_config_set(snmp_config)
 print(result)
 
 # Disconnect the SSH connection with the device
