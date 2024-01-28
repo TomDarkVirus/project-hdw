@@ -6,7 +6,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-4/setup.deb.sh' | sudo -E 
 apt install isc-kea -y
 cd /etc/kea
 mv kea-dhcp4.conf kea-dhcp4.conf.bak
-wget https://raw.githubusercontent.com/rienanp267/project-4.2/main/dhcp4.conf?token=GHSAT0AAAAAACMRIHRHTZ6N2NH7Z5XN7YX4ZNWW2AA
+wget https://raw.githubusercontent.com/TomDarkVirus/project-hdw/main/Documentatie/Commando's/dhcp4.conf
 mv dhcp4.conf kea-dhcp4.conf
 chown _kea:root kea-dhcp4.conf
 systemctl restart isc-kea-dhcp4-server
