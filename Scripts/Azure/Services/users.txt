@@ -1,0 +1,11 @@
+Tom,Kuis,tkuis,Wachtwoord123
+Martijn,Boer,mboer,Wachtwoord123
+Melvin,Kruize,mkruize,Wachtwoord123
+Ivo,Kant,ikant,Wachtwoord123
+Niels,Veldman,nveldman,Wachtwoord123
+Rick,Zwaneveld,rzwaneveld,Wachtwoord123
+Minco,Koornstra,mkoornstra,Wachtwoord123
+Rienan,Poortvliet,rpoortvliet,Wachtwoord123
+Jard,deVries,jdevries,Wachtwoord123
+Yassin,Jabasini,yjabasini,Wachtwoord123
+Vincent,Medendorp,vmedendorp,Wachtwoord123
