@@ -21,7 +21,7 @@ function Install-WindowsFeatures {
 # Function to mount Exchange Server 2016
 function Mount-Exchange {
     param (
-        [string]$isoPath = "C:\Users\administrator1\Downloads\ExchangeServer2016.iso"
+        [string]$isoPath = "\\DC01-ijs\fileshare\admin\ExchangeServer2016.iso"
     )
 
     # Create the destination folder if it doesn't exist
