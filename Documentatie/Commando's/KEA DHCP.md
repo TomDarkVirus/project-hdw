@@ -1,0 +1,55 @@
+De volgende commando’s moeten worden uitgevoerd op de dhcp server:
+Sudo su
+Apt update && apt upgrade -y
+Apt install curl apt-transport-https -y
+curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-4/setup.deb.sh' | sudo -E bash
+apt install isc-kea -y
+cd /etc/kea
+mv kea-dhcp4.conf kea-dhcp4.conf.bak
+wget https://raw.githubusercontent.com/rienanp267/project-4.2/main/dhcp4.conf?token=GHSAT0AAAAAACMRIHRHTZ6N2NH7Z5XN7YX4ZNWW2AA
+mv dhcp4.conf kea-dhcp4.conf
+chown _kea:root kea-dhcp4.conf
+systemctl restart isc-kea-dhcp4-server
+controleer of de status running is:
+systemctl restart isc-kea-dhcp4-server
+
+
+Op elke router moet vervolgens een aantal regels uitgevoerd worden, om de dhcp server door te sturen:
+int Vlan20
+ip helper-address 192.168.13.41
+int Vlan30
+ip helper-address 192.168.13.41
+int Vlan40
+ip helper-address 192.168.13.41
+int Vlan50
+ip helper-address 192.168.13.41
+int Vlan60
+ip helper-address 192.168.13.41
+int Vlan70
+ip helper-address 192.168.13.41
+
+op de plek van xxx moeten de volgende waardes worden ingevuld op de volgende routers:
+R1 Deventer: 101
+R2 Ermelo: 102
+R3 Epe: 103
+R4 Harderwijk: 201
+R5 Nunspeet: 202
+R6 Putten: 203
+ip dhcp pool Vlan20
+relay source 10.xxx.20.0 255.255.255.192
+relay destination 192.168.13.41
+ip dhcp pool Vlan30
+relay source 10.xxx.30.0 255.255.255.192
+relay destination 192.168.13.41
+ip dhcp pool Vlan40
+relay source 10.xxx.40.0 255.255.255.0
+relay destination 192.168.13.41
+ip dhcp pool Vlan50
+relay source 10.xxx.50.0 255.255.255.0
+relay destination 192.168.13.41
+ip dhcp pool Vlan60
+relay source 10.xxx.60.0 255.255.252.0
+relay destination 192.168.13.41
+ip dhcp pool Vlan70
+relay source 10.xxx.64.0 255.255.240.0
+relay destination 192.168.13.41
