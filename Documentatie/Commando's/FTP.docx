@@ -1,0 +1,23 @@
+Op de ftp server voer je het volgende uit:
+Sudo apt update && sudo apt upgrade -y
+Sudo apt install vsftpd -y
+Sudo systemctl restart vsftpd
+Sudo systemctl enable vsftpd
+Sudo nano /etc/vsftpd.conf
+Zet de volgende variabelen aan:
+-	Anonymous_enable=YES
+-	Local_enable=YES
+-	Write_enable=YES
+-	Anon_upload_enable=YES
+Sla vsftpd.conf op.
+Sudo systemctl restart vsftpd
+
+Maak de ftpuser aan op de server:
+Sudo useradd -m ftpuser
+Sudo passwd ftpuser
+
+Op elke router voer je het volgende uit:
+En
+Conf t
+Ip ftp username ftpuser
+Ip ftp password <password>
