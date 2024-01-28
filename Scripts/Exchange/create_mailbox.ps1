@@ -2,7 +2,7 @@
 Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
 
 # Get a list of users from Active Directory
-$users = Get-ADUser -Filter * -SearchBase "OU=Studenten,DC=banaan,DC=nl" -Properties DisplayName, UserPrincipalName, SamAccountName
+$users = Get-ADUser -Filter * -SearchBase "OU=Studenten,DC=ijsselstreek-university,DC=nl" -Properties DisplayName, UserPrincipalName, SamAccountName
 
 # Loop through each user and check if they already have a mailbox
 foreach ($user in $users) {
