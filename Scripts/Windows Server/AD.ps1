@@ -1,7 +1,7 @@
 # Script to automate Active Directory installation and configuration
 
 # Set your domain name and DSRM password
-$DomainName = "hwu.nl"
+$DomainName = "ijsselstreek-university.nl"
 $DSRMPassword = "Wachtwoord123"
 
 # Install Active Directory Domain Services
