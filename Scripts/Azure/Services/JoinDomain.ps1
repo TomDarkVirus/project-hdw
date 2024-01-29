@@ -3,7 +3,7 @@ $dnsServer = "10.10.0.14"
 netsh interface ipv4 set dns "Ethernet" static $dnsServer
 
 # Specify domain information
-$domainName = "test.local.nl"
+$domainName = "ijsselstreek-university.nl"
 $domainAdmin = "administrator1"
 $domainAdminPassword = "Wachtwoord123"
 
