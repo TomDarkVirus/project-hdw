@@ -1,5 +1,5 @@
 # Define parameters
-$domainName = "test.local.nl"
+$domainName = "ijsselstreek-university.nl"
 $domainAdministrator = "administrator1"
 $domainAdminPassword = Read-Host -Prompt "Enter password for $domainAdministrator" -AsSecureString
 
