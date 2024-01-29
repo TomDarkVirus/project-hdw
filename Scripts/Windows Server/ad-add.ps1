@@ -1,7 +1,7 @@
 # Script to add a server to an existing Active Directory domain
 
 # Specify the existing domain name
-$ExistingDomain = "hwu.nl"
+$ExistingDomain = "ijsselstreek-university.nl"
 
 # Prompt for domain credentials
 $Credential = Get-Credential -Message "Enter domain credentials"
