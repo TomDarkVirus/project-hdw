@@ -1,0 +1,9 @@
+name;displayname;samaccountname;Firstname;Lastname;title;department;Company;mail;Description;Password;OU;usergroup
+Tom Kuis;Tom Kuis;tkuis;Tom;Kuis;Student;Studenten;uni;t.kruis@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=Studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Harrie Barrie;Harrie Barrie;hbarrie;Harrie;Barrie;Student;Studenten;uni;h.barry@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Ben Bouten;Ben Bouten;bbouten;Ben;Bouten;Student;Studenten;uni;b.bouten@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Bob de Bouwer;Bob de Bouwer;bbouwer;Bob;Bouwer;Student;Studenten;uni;b.bouwer@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Ben Dover;Ben Dover;bdover;Ben;Dover;Student;Studenten;uni;b.dover@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Jan Janssen;Jan Janssen;jjansen;Jan;Janssen;Student;Studenten;uni;j.janssen@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Mike Crack;Mike Crack;mcrack;Mike;Crack;Student;Studenten;uni;m.crack@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
+Barry Batsbak;Barry Batsbak;bbatsbak;Barry;Batsbak;Student;Studenten;uni;b.batsbak@ijsselstreek-university.nl;Student;Wachtwoord123;OU=Studenten,OU=studenten,DC=ijsselstreek-university,DC=nl;Studenten_HDW
