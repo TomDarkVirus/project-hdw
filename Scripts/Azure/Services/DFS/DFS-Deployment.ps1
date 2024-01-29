@@ -33,12 +33,12 @@ if ($disk) {
     New-SmbShare –Name Fileshare –Path "$($driveLetter):\Fileshare" -ReadAccess "Authenticated Users"
 
     # Create DFS Namespace
-    New-DfsnRoot -Path "\\banaan.nl\Fileshare" -Type DomainV2 -TargetPath "\\FRANKENSTEIN\Fileshare"
+    New-DfsnRoot -Path "\\ijsselstreek-university.nl\Fileshare" -Type DomainV2 -TargetPath "\\DC01-ijs\Fileshare"
 
     # Add Folder Targets
-    New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder1" -TargetPath "\\FRANKENSTEIN\Fileshare\share1"
-    New-DfsnFolder -Path "\\banaan.nl\Fileshare\folder2" -TargetPath "\\FRANKENSTEIN\Fileshare\share2"
-    New-DfsnFolder -Path "\\banaan.nl\Fileshare\User Mappen" -TargetPath "\\FRANKENSTEIN\Fileshare\User_Maps"
+    New-DfsnFolder -Path "\\ijsselstreek-university.nl\Fileshare\folder1" -TargetPath "\\DC01-ijs\Fileshare\share1"
+    New-DfsnFolder -Path "\\ijsselstreek-university.nl\Fileshare\folder2" -TargetPath "\\DC01-ijs\Fileshare\share2"
+    New-DfsnFolder -Path "\\ijsselstreek-university.nl\Fileshare\User Mappen" -TargetPath "\\DC01-ijs\Fileshare\User_Maps"
 
     # quota management
     # Specify the quota limit in bytes (500 MB in bytes)
